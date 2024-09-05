@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 enable_testing()
 
-find_package(Boost REQUIRED COMPONENTS regex)
+find_package(Boost REQUIRED COMPONENTS regex stacktrace_backtrace)
 
 add_subdirectory(src)
