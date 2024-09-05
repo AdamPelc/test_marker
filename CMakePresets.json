@@ -1,0 +1,117 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 23,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "generator_ninja",
+            "hidden": true,
+            "generator": "Ninja"
+        },
+        {
+            "name": "generator_vs",
+            "hidden": true,
+            "generator": "Visual Studio 17 2022"
+        },
+        {
+            "name": "build_release",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "toolchain_gcc",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "g++"
+            }
+        },
+        {
+            "name": "toolchain_clang",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "toolchain_msvc",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "cl.exe"
+            }
+        },
+        {
+            "name": "toolchain_clang_cl",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "clang-cl.exe"
+            }
+        },
+        {
+            "name": "release_gcc",
+            "inherits": ["generator_ninja", "build_release", "toolchain_gcc"],
+            "displayName": "Release (GCC)",
+            "description": "Release version using g++ compiler",
+            "binaryDir": "${sourceDir}/out/build/release/gcc"
+        },
+        {
+            "name": "release_clang",
+            "inherits": ["generator_ninja", "build_release", "toolchain_clang"],
+            "displayName": "Release (CLANG)",
+            "description": "Release version using clang++ compiler",
+            "binaryDir": "${sourceDir}/out/build/release/clang"
+        },
+        {
+            "name": "release_msvc",
+            "inherits": ["generator_vs", "build_release", "toolchain_msvc"],
+            "displayName": "Release (MSVC)",
+            "description": "Release version build using MSVC compiler",
+            "binaryDir": "${sourceDir}/out/build/release/msvc"
+        },
+        {
+            "name": "release_clang_cl",
+            "inherits": ["generator_vs", "build_release", "toolchain_clang_cl"],
+            "displayName": "Release (clang-cl)",
+            "description": "Release version build using clang-cl compiler",
+            "binaryDir": "${sourceDir}/out/build/release/clang-cl"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "release_gcc",
+            "displayName": "All targets release (GCC)",
+            "description": "Build all targets in release version using gcc compiler",
+            "configurePreset": "release_gcc"
+        },
+        {
+            "name": "release_clang",
+            "displayName": "All targets release (CLANG)",
+            "description": "Build all targets in release version using clang compiler",
+            "configurePreset": "release_clang"
+        },
+        {
+            "name": "release_msvc",
+            "displayName": "All targets release (MSVC)",
+            "description": "Build all targets in release version using msvc compiler",
+            "configurePreset": "release_msvc"
+        },
+        {
+            "name": "release_clang_cl",
+            "displayName": "All targets release (clang-cl)",
+            "description": "Build all targets in release version using clang-cl compiler",
+            "configurePreset": "release_clang_cl"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "all",
+            "displayName": "All tests",
+            "configurePreset": "release_gcc",
+            "configuration": "Release"
+        }
+    ]
+}
