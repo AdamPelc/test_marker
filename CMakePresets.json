@@ -45,7 +45,7 @@
             }
         },
         {
-            "name": "toolchain_clang_cl",
+            "name": "toolchain_clang-cl",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "clang-cl.exe"
@@ -73,8 +73,8 @@
             "binaryDir": "${sourceDir}/out/build/release/msvc"
         },
         {
-            "name": "release_clang_cl",
-            "inherits": ["generator_vs", "build_release", "toolchain_clang_cl"],
+            "name": "release_clang-cl",
+            "inherits": ["generator_vs", "build_release", "toolchain_clang-cl"],
             "displayName": "Release (clang-cl)",
             "description": "Release version build using clang-cl compiler",
             "binaryDir": "${sourceDir}/out/build/release/clang-cl"
@@ -100,10 +100,10 @@
             "configurePreset": "release_msvc"
         },
         {
-            "name": "release_clang_cl",
+            "name": "release_clang-cl",
             "displayName": "All targets release (clang-cl)",
             "description": "Build all targets in release version using clang-cl compiler",
-            "configurePreset": "release_clang_cl"
+            "configurePreset": "release_clang-cl"
         }
     ],
     "testPresets": [
