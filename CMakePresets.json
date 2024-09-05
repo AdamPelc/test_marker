@@ -24,57 +24,64 @@
             }
         },
         {
-            "name": "toolchain_gcc",
+            "name": "compiler_gcc",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "g++"
             }
         },
         {
-            "name": "toolchain_clang",
+            "name": "compiler_clang",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "clang++"
             }
         },
         {
-            "name": "toolchain_msvc",
+            "name": "compiler_msvc",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "cl.exe"
             }
         },
         {
-            "name": "toolchain_clang-cl",
+            "name": "compiler_clang-cl",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "clang-cl.exe"
             }
         },
         {
+            "name": "toolchain_vcpkg",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        },
+        {
             "name": "release_gcc",
-            "inherits": ["generator_ninja", "build_release", "toolchain_gcc"],
+            "inherits": ["generator_ninja", "build_release", "compiler_gcc", "toolchain_vcpkg"],
             "displayName": "Release (GCC)",
             "description": "Release version using g++ compiler",
             "binaryDir": "${sourceDir}/out/build/release/gcc"
         },
         {
             "name": "release_clang",
-            "inherits": ["generator_ninja", "build_release", "toolchain_clang"],
+            "inherits": ["generator_ninja", "build_release", "compiler_clang", "toolchain_vcpkg"],
             "displayName": "Release (CLANG)",
             "description": "Release version using clang++ compiler",
             "binaryDir": "${sourceDir}/out/build/release/clang"
         },
         {
             "name": "release_msvc",
-            "inherits": ["generator_vs", "build_release", "toolchain_msvc"],
+            "inherits": ["generator_vs", "build_release", "compiler_msvc", "toolchain_vcpkg"],
             "displayName": "Release (MSVC)",
             "description": "Release version build using MSVC compiler",
             "binaryDir": "${sourceDir}/out/build/release/msvc"
         },
         {
             "name": "release_clang-cl",
-            "inherits": ["generator_vs", "build_release", "toolchain_clang-cl"],
+            "inherits": ["generator_vs", "build_release", "compiler_clang-cl", "toolchain_vcpkg"],
             "displayName": "Release (clang-cl)",
             "description": "Release version build using clang-cl compiler",
             "binaryDir": "${sourceDir}/out/build/release/clang-cl"
