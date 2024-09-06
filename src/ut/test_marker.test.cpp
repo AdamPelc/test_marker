@@ -31,5 +31,5 @@ TEST_P(TestFixtureName, TestName) {
     EXPECT_EQ("TestName", test_case_name);
 }
 
-INSTANTIATE_TEST_CASE_P(Odd, TestFixtureName, ::testing::Values(1, 3, 5));
-INSTANTIATE_TEST_CASE_P(Even, TestFixtureName, ::testing::Values(2, 4, 6));
+INSTANTIATE_TEST_SUITE_P(Odd, TestFixtureName, ::testing::Values(1, 3, 5));
+INSTANTIATE_TEST_SUITE_P(Even, TestFixtureName, ::testing::Values(2, 4, 6));

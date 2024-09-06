@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 enable_testing()
 
+include(cmake/compiler_warnings.cmake)
+
 find_package(Boost REQUIRED COMPONENTS regex stacktrace_backtrace)
 find_package(GTest CONFIG REQUIRED)
 
