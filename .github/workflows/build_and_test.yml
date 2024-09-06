@@ -22,21 +22,3 @@ jobs:
         run: cmake --preset release_clang -G "Unix Makefiles"
       - name: Build project
         run: cmake --build --preset release_clang
-  build_msvc:
-    runs-on: [windows-latest]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Configure project
-        run: cmake --preset release_msvc
-      - name: Build project
-        run: cmake --build --preset release_msvc
-  build_clang-cl:
-    runs-on: [windows-latest]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Configure project
-        run: cmake --preset release_clang-cl
-      - name: Build project
-        run: cmake --build --preset release_clang-cl

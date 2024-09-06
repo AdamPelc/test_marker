@@ -12,11 +12,6 @@
             "generator": "Ninja"
         },
         {
-            "name": "generator_vs",
-            "hidden": true,
-            "generator": "Visual Studio 17 2022"
-        },
-        {
             "name": "build_release",
             "hidden": true,
             "cacheVariables": {
@@ -35,20 +30,6 @@
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "clang++"
-            }
-        },
-        {
-            "name": "compiler_msvc",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_CXX_COMPILER": "cl.exe"
-            }
-        },
-        {
-            "name": "compiler_clang-cl",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_CXX_COMPILER": "clang-cl.exe"
             }
         },
         {
@@ -71,20 +52,6 @@
             "displayName": "Release (CLANG)",
             "description": "Release version using clang++ compiler",
             "binaryDir": "${sourceDir}/out/build/release/clang"
-        },
-        {
-            "name": "release_msvc",
-            "inherits": ["generator_vs", "build_release", "compiler_msvc", "toolchain_vcpkg"],
-            "displayName": "Release (MSVC)",
-            "description": "Release version build using MSVC compiler",
-            "binaryDir": "${sourceDir}/out/build/release/msvc"
-        },
-        {
-            "name": "release_clang-cl",
-            "inherits": ["generator_vs", "build_release", "compiler_clang-cl", "toolchain_vcpkg"],
-            "displayName": "Release (clang-cl)",
-            "description": "Release version build using clang-cl compiler",
-            "binaryDir": "${sourceDir}/out/build/release/clang-cl"
         }
     ],
     "buildPresets": [
@@ -99,18 +66,6 @@
             "displayName": "All targets release (CLANG)",
             "description": "Build all targets in release version using clang compiler",
             "configurePreset": "release_clang"
-        },
-        {
-            "name": "release_msvc",
-            "displayName": "All targets release (MSVC)",
-            "description": "Build all targets in release version using msvc compiler",
-            "configurePreset": "release_msvc"
-        },
-        {
-            "name": "release_clang-cl",
-            "displayName": "All targets release (clang-cl)",
-            "description": "Build all targets in release version using clang-cl compiler",
-            "configurePreset": "release_clang-cl"
         }
     ],
     "testPresets": [
