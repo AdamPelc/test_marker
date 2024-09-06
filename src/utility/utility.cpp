@@ -1,10 +1,10 @@
-#include "test_marker.h"
+#include "utility.hpp"
 
 #define BOOST_STACKTRACE_LINK
 #include <boost/regex.hpp>
 #include <boost/stacktrace.hpp>
 
-namespace trick {
+namespace trick::test_checkpoint::utility {
     std::optional<std::pair<std::string, std::string>> get_test_name() noexcept {
         const auto stacktrace = to_string(boost::stacktrace::stacktrace());
         const boost::regex expression(R"(#\s(.*?)_(.*)_Test::TestBody\(\))");
