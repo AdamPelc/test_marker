@@ -6,23 +6,39 @@
 
 using namespace std::literals::string_literals;
 
-TEST(Checkpoint, SaveCheckpointToOstream) {
+TEST(checkpoint, save_checkpoint_to_ostream) {
     std::stringstream stringstream;
     ASSERT_NO_THROW(trick::test_checkpoint::add_checkpoint(stringstream));
 
-    EXPECT_EQ("GTEST(Checkpoint, SaveCheckpointToOstream)\n"s, stringstream.str());
+    EXPECT_EQ("GTEST(checkpoint, save_checkpoint_to_ostream)\n"s, stringstream.str());
 }
 
-TEST(Checkpoint, SaveCheckpointToFile) {
+TEST(checkpoint, save_checkpoint_to_file) {
     // Arrange
-    const std::string file_path = "./checkpoints.txt";
+    const auto file_path = "./checkpoints.txt"s;
 
-    // Act
+    // act
     ASSERT_NO_THROW(trick::test_checkpoint::add_checkpoint(file_path));
     std::ifstream reader(file_path, std::ios::in);
     std::stringstream actual;
     reader >> actual.rdbuf();
 
-    // Assert
-    EXPECT_EQ("GTEST(Checkpoint, SaveCheckpointToFile)\n"s, actual.str());
+    // assert
+    EXPECT_EQ("GTEST(checkpoint, save_checkpoint_to_file)\n"s, actual.str());
+}
+
+TEST(checkpoint, save_checkpoint_to_multiple_locations) {
+    // arrange
+    const auto file_path = "./checkpoint_save_checkpoint_to_multiple_locations.txt";
+    auto buffer = std::stringstream();
+
+    // act
+    trick::test_checkpoint::add_checkpoint(file_path, buffer);
+    std::ifstream reader(file_path, std::ios::in);
+    std::stringstream actual;
+    reader >> actual.rdbuf();
+
+    // assert
+    EXPECT_EQ("GTEST(checkpoint, save_checkpoint_to_multiple_locations)\n"s, actual.str());
+    EXPECT_EQ("GTEST(checkpoint, save_checkpoint_to_multiple_locations)\n"s, buffer.str());
 }
