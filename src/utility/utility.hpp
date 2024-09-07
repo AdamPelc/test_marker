@@ -1,9 +1,7 @@
 #pragma once
 
-#include <optional>
-#include <utility>
-#include <string>
+#include "test_data.hpp"
 
 namespace trick::test_checkpoint::utility {
-  [[nodiscard]] std::optional<std::pair<std::string, std::string>> get_test_name() noexcept;
+  [[nodiscard]] test_data get_test_data() noexcept;
 }

@@ -1,6 +1,8 @@
 #pragma once
 
+#include "trick/test_checkpoint/configuration.hpp"
+
 namespace trick::test_checkpoint
 {
-    // class checkpoint;
+    void add_checkpoint(const configuration& configuration);
 }
