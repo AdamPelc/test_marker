@@ -8,7 +8,7 @@
 namespace trick::test_checkpoint::utility {
     test_data get_test_data() noexcept {
         const auto stacktrace = to_string(boost::stacktrace::stacktrace());
-        const boost::regex expression(R"(#\s(.*?)_(.*)_Test::TestBody\(\))");
+        const auto expression = boost::regex(R"(#\s(.*?)_(.*)_Test::TestBody\(\))");
         boost::match_results<std::string::const_iterator> what;
         constexpr boost::match_flag_type flags = boost::match_not_dot_newline;
         const auto start = std::begin(stacktrace);
