@@ -11,6 +11,12 @@ find_package(Boost REQUIRED COMPONENTS regex stacktrace_backtrace)
 find_package(GTest CONFIG REQUIRED)
 
 add_library(test_checkpoint SHARED)
+target_sources(test_checkpoint
+    PUBLIC
+        FILE_SET HEADERS
+        BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include
+        FILES include/trick/test_checkpoint/checkpoint.hpp
+)
 target_link_libraries(test_checkpoint
     PRIVATE
     compiler_warnings
@@ -27,6 +33,12 @@ target_link_libraries(test_checkpoint.test
     test_checkpoint
     GTest::gtest
     GTest::gtest_main
+)
+
+include(GNUInstallDirs)
+install(TARGETS test_checkpoint
+    LIBRARY
+    FILE_SET HEADERS
 )
 
 add_subdirectory(src)
