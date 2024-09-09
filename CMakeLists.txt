@@ -23,7 +23,11 @@ target_link_libraries(test_checkpoint
     Boost::regex
     Boost::stacktrace_backtrace
 )
-target_include_directories(test_checkpoint PUBLIC include)
+target_include_directories(test_checkpoint
+    PUBLIC
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
 
 add_executable(test_checkpoint.test)
 add_test(NAME test_checkpoint.test COMMAND test_checkpoint.test)
@@ -36,9 +40,16 @@ target_link_libraries(test_checkpoint.test
 )
 
 include(GNUInstallDirs)
-install(TARGETS test_checkpoint
+install(TARGETS test_checkpoint EXPORT trick_test_checkpoint_targets
     LIBRARY
     FILE_SET HEADERS
+)
+install(EXPORT trick_test_checkpoint_targets
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/trick/cmake
+    NAMESPACE trick::
+)
+install(FILES "cmake/trick_test_checkpoint-config.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/trick/cmake
 )
 
 add_subdirectory(src)
