@@ -40,15 +40,15 @@ target_link_libraries(test_checkpoint.test
 )
 
 include(GNUInstallDirs)
-install(TARGETS test_checkpoint EXPORT trick_test_checkpoint_targets
+install(TARGETS test_checkpoint EXPORT trick_targets
     LIBRARY
     FILE_SET HEADERS
 )
-install(EXPORT trick_test_checkpoint_targets
+install(EXPORT trick_targets
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/trick/cmake
     NAMESPACE trick::
 )
-install(FILES "cmake/trick_test_checkpoint-config.cmake"
+install(FILES "cmake/trick-config.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/trick/cmake
 )
 
