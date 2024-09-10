@@ -1,4 +1,4 @@
-# test_marker
+# test_checkpoint
 (TODO) List test cases which execute marked code.
 
 ## Quick Install

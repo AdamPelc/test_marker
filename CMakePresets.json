@@ -75,5 +75,13 @@
             "configurePreset": "release_gcc",
             "configuration": "Release"
         }
+    ],
+    "packagePresets": [
+        {
+            "name": "release",
+            "displayName": "Linux release packages",
+            "configurePreset": "release_gcc",
+            "generators": ["ZIP", "7Z", "DEB", "RPM"]
+        }
     ]
 }

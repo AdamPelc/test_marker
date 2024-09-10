@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(test_marker)
+project(test_checkpoint VERSION 0.0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -51,5 +51,10 @@ install(EXPORT trick_targets
 install(FILES "cmake/trick-config.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/trick/cmake
 )
+
+set(CPACK_PACKAGE_VENDOR "Adam Pelc")
+set(CPACK_PACKAGE_CONTACT "adam.pelc.su@gmail.com")
+set(CPACK_PACKAGE_DESCRIPTION "Testing checkpoints")
+include(CPack)
 
 add_subdirectory(src)

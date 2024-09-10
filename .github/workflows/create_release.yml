@@ -1,0 +1,30 @@
+name: Build and test
+run-name: Checking commit
+on:
+  push:
+    tags:
+      - 'v*' # Trigger on version tags
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Configure project
+        run: cmake --preset release_gcc -G "Unix Makefiles"
+      - name: Build project
+        run: cmake --build --preset release_gcc
+      - name: Run tests
+        run: ctest --preset all
+      - name: Create packages with CPack
+        run: cpack --preset release
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            out/build/release/gcc/test_checkpoint-0.0.1-Linux.7z
+            out/build/release/gcc/test_checkpoint-0.0.1-Linux.deb
+            out/build/release/gcc/test_checkpoint-0.0.1-Linux.rpm
+            out/build/release/gcc/test_checkpoint-0.0.1-Linux.zip
+          prerelease: true
+          fail_on_unmatched_files: true
